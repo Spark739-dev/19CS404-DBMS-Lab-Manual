@@ -96,7 +96,6 @@ Used to insert a default value into a column if no value is specified.
 
 Syntax:
 ```sql
-
 CREATE TABLE Table_Name (
   col_name1 data_type,
   col_name2 data_type,
@@ -105,284 +104,201 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
-```
-Insert the below data into the Customers table, allowing the City and ZipCode columns to take their default values.
+--
+Create a new table named item with the following specifications and constraints:
+    item_id as TEXT and as primary key.
+    item_desc as TEXT.
+    rate as INTEGER.
+    icom_id as TEXT with a length of 4.
+    icom_id is a foreign key referencing com_id in the company table.
+    The foreign key should set NULL on updates and deletes.
+    item_desc and rate should not accept NULL.
 
-CustomerID  Name          Address
-----------  ------------  ----------
-304         Peter Parker  Spider St      
-```
-
-### sql code:
-```
-INSERT INTO Customers (CustomerID, Name, Address)
-VALUES (304, 'Peter Parker', 'Spider St');
+```sql
+CREATE TABLE item(
+    item_id TEXT PRIMARY KEY,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT CHECK(LENGTH(icom_id)=4),
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)
+    ON DELETE SET NULL 
+    ON UPDATE SET NULL
+);
 ```
 
 **Output:**
 
-<img width="1236" height="407" alt="1" src="https://github.com/user-attachments/assets/1e1745e1-37f1-4699-aa5d-b0338e7157b7" />
+![image](https://github.com/user-attachments/assets/2eebfa33-e414-40c2-9965-f774fbd762ca)
 
 
 
 **Question 2**
-```
-Write a SQL query to Add a new column Country as text in the Student_details table.
+---
+Insert all products from Discontinued_products into Products.
+Table attributes are ProductID, ProductName, Price, Stock
 
-Sample table: Student_details
-
- cid              name             type   notnull     dflt_value  pk
----------------  ---------------  -----  ----------  ----------  ----------
-0                RollNo           int    0                       1
-1                Name             VARCH  1                       0
-2                Gender           TEXT   1                       0
-3                Subject          VARCH  0                       0
-4                MARKS            INT (  0                       0
-```
-
-### sql code:
-
-
-```
-ALTER TABLE Student_details
-ADD COLUMN Country TEXT;
+```sql
+insert into Products(ProductID, ProductName, Price, Stock)
+SELECT * FROM Discontinued_products; 
 ```
 
 **Output:**
-<img width="1251" height="457" alt="2" src="https://github.com/user-attachments/assets/be3a3c6b-d6ea-4bf2-9d43-56e4d6243f13" />
+
+![image](https://github.com/user-attachments/assets/7edc5ec7-c274-4173-9d29-be2f37264084)
 
 
 **Question 3**
-```
-Create a table named Bonuses with the following constraints:
+---
+Create a table named Employees with the following constraints:
 
-- BonusID as INTEGER should be the primary key.
-- EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
-- BonusAmount as REAL should be greater than 0.
-- BonusDate as DATE.
-- Reason as TEXT should not be NULL.
-```
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
-### sql code:
-
-```
-CREATE TABLE Bonuses (
-    BonusID INTEGER PRIMARY KEY,
-    EmployeeID INTEGER,
-    BonusAmount REAL CHECK (BonusAmount > 0),
-    BonusDate DATE,
-    Reason TEXT NOT NULL,
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+```sql
+create table Employees(
+EmployeeID int primary key,
+FirstName text not null,
+LastName text not null,
+Salary int check(salary>0),
+Email text unique,
+DepartmentID int,
+foreign key (DepartmentID) references Departments(DepartmentID)
 );
 ```
 
 **Output:**
 
-<img width="1255" height="446" alt="4" src="https://github.com/user-attachments/assets/3c86d277-ce67-40b3-83ed-541c46822e3b" />
-<img width="1233" height="372" alt="3" src="https://github.com/user-attachments/assets/f74e8218-1c96-4b2a-8847-cbd2c3734a9a" />
+![image](https://github.com/user-attachments/assets/1adf1535-cc33-4e8c-bdb3-c13211382312)
 
 
 **Question 4**
-```
-Insert the following employees into the Employee table:
-
-EmployeeID  Name        Position    Department  Salary
-----------  ----------  ----------  ----------  ----------
-2           John Smith  Developer   IT          75000
-3           Anna Bell   Designer    Marketing   68000
-
-```
-
-
-### sql code:
-
-
-```
-
-
-
- INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
-VALUES(2,"John Smith","Developer","IT",75000),
-(3, 'Anna Bell', 'Designer', 'Marketing', 68000);
-
+---
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table
+```sql
+insert into Student_details(RollNo,Name,Gender,Subject,MARKS)values(201,'David Lee','M','Physics',92)
 ```
 
 **Output:**
 
-<img width="1255" height="446" alt="4" src="https://github.com/user-attachments/assets/cceeee7e-3c75-47bd-a788-886100c0e0db" />
-
+![image](https://github.com/user-attachments/assets/2e6a5949-c3e0-4840-a395-b7f35ba90b10)
 
 **Question 5**
-```
-Create a table named Employees with the following columns:
+---
 
-- `EmployeeID` as `INTEGER`
-- `FirstName` as `TEXT`
-- `LastName` as `TEXT`
-- `HireDate` as `DATE`
-```
+Create a table named Members with the following columns:
 
-### sql code:
+MemberID as INTEGER
+MemberName as TEXT
+JoinDate as DATE
 
-
-```
-CREATE TABLE Employees (
-    EmployeeID INTEGER,
-    FirstName TEXT,
-    LastName TEXT,
-    HireDate DATE
-);
+```sql
+create table Members(
+MemberID INTEGER,
+MemberName TEXT,
+JoinDate DATE);
 ```
 
 **Output:**
-<img width="1236" height="395" alt="5" src="https://github.com/user-attachments/assets/28c3dd59-0186-4166-8579-bf6f1cc98465" />
 
-
+![image](https://github.com/user-attachments/assets/b94e86a9-4b62-4e4a-b1fd-f93cf5b9d677)
 
 **Question 6**
-```
+---
+Write an SQL query to change the name of the column id to employee_id in the table employee.
 
-Create a new table named contacts with the following specifications:
-
-- `contact_id` as `INTEGER` and primary key.
-- `first_name` as `TEXT` and not NULL.
-- `last_name` as `TEXT` and not NULL.
-- `email` as `TEXT`.
-- `phone` as `TEXT` and not NULL with a check constraint to ensure the length of `phone` is at least 10 characters.
-
-```
-### sql code:
-
-
-```
-
-
-
-CREATE TABLE contacts(contact_id INTEGER PRIMARY KEY,
-                      first_name TEXT NOT NULL,
-                      last_name TEXT NOT NULL,
-                      email TEXT,
-                      phone TEXT NOT NULL CHECK (LENGTH(phone) >= 10)
-);
-              
+```sql
+alter table employee  rename id to employee_id; 
 ```
 
 **Output:**
 
-<img width="1245" height="412" alt="6" src="https://github.com/user-attachments/assets/b35cbd79-9b12-4660-83cf-1a3d51138327" />
-
+![image](https://github.com/user-attachments/assets/f03e7c20-39ca-4084-9ce8-a64981818a5b)
 
 **Question 7**
-```
-Create a table named Employees with the following constraints:
-
-- `EmployeeID` should be the primary key.
-- `FirstName` and `LastName` should be `NOT NULL`.
-- `Email` should be unique.
-- `Salary` should be greater than 0.
-- `DepartmentID` should be a foreign key referencing the `Departments` table.
-```
-
-### sql code:
-
-
-```
-CREATE TABLE Employees (
-    EmployeeID INTEGER PRIMARY KEY,
-    FirstName TEXT NOT NULL,
-    LastName TEXT NOT NULL,
-    Email TEXT UNIQUE,
-    Salary REAL CHECK (Salary > 0),
-    DepartmentID INTEGER,
-    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+---
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
+```sql
+create table Attendance(
+    AttendanceID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    AttendanceDate DATE,
+    Status TEXT ,
+    foreign key (EmployeeID) references  Employees(EmployeeID),
+    CHECK(Status IN ('Present','Absent','Leave'))
 );
 ```
 
 **Output:**
 
-<img width="1238" height="527" alt="7" src="https://github.com/user-attachments/assets/919ae962-5f54-4868-9152-050e5df23a99" />
-
+![image](https://github.com/user-attachments/assets/a78faf98-d2de-4a5b-b892-219f87d96a7f)
 
 **Question 8**
-```
-In the Cusomers table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+---
+Insert the following products into the Products table:
 
-CustomerID  Name          Address      City        ZipCode
-----------  ------------  ----------   ----------  ----------
-306         Diana Prince  Themyscira
-307         Bruce Wayne   Wayne Manor  Gotham      10007
-308         Peter Parker  Queens                   11375
+Name        Category     Price       Stock<br/>
+----------  -----------  ----------  ----------<br/>
+Smartphone  Electronics  800         150<br/>
+Headphones  Accessories  200         300<br/>
+```sql
+insert into Products(Name,Category,Price,Stock)values('Smartphone','Electronics',800,150),('Headphones','Accessories',200,300);
 ```
 
-### sql code:
-
-```
-INSERT INTO Customers (CustomerID, Name, Address, City, ZipCode)
-VALUES
-(306, 'Diana Prince', 'Themyscira', NULL, NULL),
-(307, 'Bruce Wayne', 'Wayne Manor', 'Gotham', 10007),
-(308, 'Peter Parker', 'Queens', NULL, 11375);
-```
 **Output:**
 
-<img width="1247" height="397" alt="8" src="https://github.com/user-attachments/assets/9dff7025-503e-434d-9a5c-35a92e120c46" />
-
+![image](https://github.com/user-attachments/assets/be52dd8d-1198-46a3-a0c0-42a01ce48691)
 
 **Question 9**
-```
-Create a table named Tasks with the following columns:
+---
 
-- `TaskID` as `INTEGER`
-- `TaskName` as `TEXT`
-- `DueDate` as `DATE`
-```
-
-
-### sql code:
-
-
-```
-CREATE TABLE Tasks (
-    TaskID INTEGER,
-    TaskName TEXT,
-    DueDate DATE
-);
-
-```
-
-**Output:**
-
-<img width="1247" height="470" alt="9" src="https://github.com/user-attachments/assets/a96fe61a-4ef1-4e0a-b137-04d78e0830c5" />
-
-
-**Question 10**
-```
 Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
 
 Sample table: customer
 
- customer_id |   cust_name    |    city    | grade | salesman_id 
--------------+----------------+------------+-------+-------------
-        3002 | Nick Rimando   | New York   |   100 |        5001
-        3007 | Brad Davis     | New York   |   200 |        5001
-        3005 | Graham Zusi    | California |   200 |        5002
+ customer_id |   cust_name    |    city    | grade | salesman_id <br/>
+-------------+----------------+------------+-------+-------------<br/>
+        3002 | Nick Rimando   | New York   |   100 |        5001<br/>
+        3007 | Brad Davis     | New York   |   200 |        5001<br/>
+        3005 | Graham Zusi    | California |   200 |        5002<br/>
 
-```
-
-
-### sql code:
-<img width="1236" height="407" alt="1" src="https://github.com/user-attachments/assets/bae7ba7f-f541-49d9-9687-c1c661191ee1" />
-
-
-```
-ALTER TABLE customer
-ADD COLUMN birth_date timestamp;
+```sql
+alter table customer add birth_date timestamp;
 ```
 
 **Output:**
-<img width="1243" height="458" alt="10" src="https://github.com/user-attachments/assets/6b267510-1c85-41bf-a181-fc321e2c981a" />
 
+![image](https://github.com/user-attachments/assets/b17d1491-6ca4-4208-9db7-c4f7390468e3)
 
+**Question 10**
+---
+
+Write a SQL query to Add a new column Country as text in the Student_details table.
+
+Sample table: Student_details
+
+ cid              name             type   notnull     dflt_value  pk <br/>
+---------------  ---------------  -----  ----------  ----------  ----------<br/>
+0                RollNo           int    0                       1<br/>
+1                Name             VARCH  1                       0<br/>
+2                Gender           TEXT   1                       0<br/>
+3                Subject          VARCH  0                       0<br/>
+4                MARKS            INT (  0                       0<br/>
+
+```sql
+
+alter table Student_details add Country TEXT;
+```
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/d77662df-626a-4c27-90d9-4f8487ba882e)
 
 
 ## RESULT
