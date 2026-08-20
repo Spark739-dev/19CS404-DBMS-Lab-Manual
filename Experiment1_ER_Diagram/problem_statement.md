@@ -1,6 +1,6 @@
 # ER Diagram Workshop – Submission Template
-## NAME: Jothimani P
-## REG NO: 212224230108
+## NAME: VESHWANTH.
+## REG NO: 212224230300
 ## Objective
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
