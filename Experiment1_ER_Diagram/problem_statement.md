@@ -1,5 +1,6 @@
 # ER Diagram Workshop – Submission Template
-
+## NAME: VESHWANTH.
+## REG NO: 212224230300
 ## Objective
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
@@ -19,77 +20,31 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Trainers assigned to programs; a program may have multiple trainers.  
 - Members may book personal training sessions with trainers.  
 - Attendance recorded for each session.  
+
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+
+<img width="1021" height="691" alt="image" src="https://github.com/user-attachments/assets/0bdc3f72-083b-47e4-a62c-a97bb1a16358" />
+
 
 ### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
 
-### Relationships and Constraints
+| Relationship | Cardinality | Participation | Notes                                                                  |
+|--------------|-------------|---------------|------------------------------------------------------------------------|
+|Member–Loan          | 1 : M             |Total on Loan         |A loan must belong to one member                                        |
+|Book–Loan           | 1 : M             |Total on Loan         |A loan must refer to one book                                           |
+|Room–Event           | 1 : M             |Total on Event |An event must be assigned a room                                        |    
+|Event–Speaker | M : N             |Partial               |Eventsmay have multiple speakers,and speakers may attend multiple events|
+|Member–Event         | M : N             |Partial               |Members may attend multiple events                                      |
+|Book–Member   | M : N             |Total on both  |Many members can borrow many books over time              |             |
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
 
 ### Assumptions
-- 
-- 
-- 
-
----
-
-# Scenario B: City Library Event & Book Lending System
-
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
-
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
-
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
+- A member can borrow multiple books, but each loan entry is for one book at a time.
+- FineAmount is calculated separately and stored in the Loan entity.
+- A room can host many events but an event can take place in only one room.
 ---
 
 # Scenario C: Restaurant Table Reservation & Ordering
@@ -106,31 +61,37 @@ A popular restaurant wants to manage reservations, orders, and billing.
 - Waiters assigned to serve reservations.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+
+<img width="1032" height="692" alt="image" src="https://github.com/user-attachments/assets/1f939055-e752-4135-bf0b-cf18b9bed377" />
+
 
 ### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| Entity    | Attributes (PK, FK)                                                                     | Notes                              |
+|-----------|-----------------------------------------------------------------------------------------|------------------------------------|
+|Customer          |CustomerID (PK), Name, Email, Contact                                                          |Customer details                    |      
+|Dish              |DishID (PK), DishName, Price, Category                                                          |Menu items served                   |
+|Waiter            |WaiterID (PK), Name, Contact, Shift                                                            |Staff who serve customers           |
+|Reservation|ReservationID (PK), CustomerID (FK), TableID, Date, Time                                        |Table reservations made by customers|
+|Orders            |OrderID (PK), CustomerID (FK), ReservationID (FK), DishID (FK), WaiterID (FK), OrderTime        |Order placed for dishes             | 
+|Billing          |BillID (PK), ReservationID (FK), TotalAmount, ServiceCharge                                    |Final bill for reservation          |               
 
 ### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
+| Relationship        | Cardinality | Participation       | Notes                                      |
+|---------------------|-------------|---------------------|--------------------------------------------|
+|Customer–Reservation        | 1 : M              |Total on Reservation        |A reservation must be linked to a customer  |
+|Customer–Orders            | 1 : M              |Total on Orders            |An order is always placed by a customer     |
+|Reservation–Billing        | 1 : 1              |Total on Billing            |Every reservation has exactly one bill      |
+|Reservation–Orders          | 1 : M              |Partial                    |Not all reservations may have orders        |
+|Dish–Orders                | 1 : M              |Total on Orders            |An order must refer to a dish               | 
+|Waiter–Orders              | 1 : M              |Total                      |Each order is served by one waiter          |
+|Customer–Billing            | 1 : M       |Partial                    |Customer pays the bill for their reservation|         
 ### Assumptions
-- 
-- 
-- 
+- A customer may or may not make a reservation before ordering.
+- Each order contains one dish per entry (multiple dishes = multiple order entries).
+- Billing is done per reservation, not per individual order.
+- A waiter can serve multiple orders but an order is handled by exactly one waiter.
 
 ---
 
