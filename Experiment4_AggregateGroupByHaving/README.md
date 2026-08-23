@@ -1,5 +1,6 @@
 # Experiment 4: Aggregate Functions, Group By and Having Clause
-
+## NAME: VESHWANTH.
+## REG NO: 212224230300
 ## AIM
 To study and implement aggregate functions, GROUP BY, and HAVING clause with suitable examples.
 
