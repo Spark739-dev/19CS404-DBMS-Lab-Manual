@@ -66,8 +66,8 @@ order by Specialty,Gender;
 
 
 **Question 2**
----
--- Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
+
+Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
 
 Sample table: employee
 For example:
@@ -83,7 +83,7 @@ Georgia     250000
 here
 
 ```sql
--- select city, sum(income) as Income from employee
+select city, sum(income) as Income from employee
 group by city having Income > 200000;
 ```
 
@@ -93,8 +93,8 @@ group by city having Income > 200000;
 
 
 **Question 3**
----
--- Write the SQL query that achieves the grouping of data by occupation, calculates the minimum work hours for each occupation, and excludes occupations where the minimum work hour is not greater than 8.
+
+Write the SQL query that achieves the grouping of data by occupation, calculates the minimum work hours for each occupation, and excludes occupations where the minimum work hour is not greater than 8.
 
 Sample table: employee1
 
@@ -112,7 +112,7 @@ Teacher     9
 
 
 ```sql
--- select occupation,  AVG(workhour) from employee1
+select occupation,  AVG(workhour) from employee1
 group by occupation having AVG(workhour) between 10 and 12;
 ```
 
@@ -121,8 +121,8 @@ group by occupation having AVG(workhour) between 10 and 12;
 ![image](https://github.com/user-attachments/assets/8f7a3725-509e-46fe-83d0-d03a321d1509)
 
 **Question 4**
----
--- Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
+
+Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
 
 Sample table: employee1
 
@@ -136,7 +136,7 @@ occupation  AVG(workhour)
 Business    10.0
 Engineer    12.0
 ```sql
--- select occupation,  AVG(workhour) from employee1
+select occupation,  AVG(workhour) from employee1
 group by occupation having AVG(workhour) between 10 and 12;
 ```
 
@@ -146,8 +146,7 @@ group by occupation having AVG(workhour) between 10 and 12;
 
 
 **Question 5**
----
--- Write a SQL query to find the average length of names for people living in Chennai?
+ Write a SQL query to find the average length of names for people living in Chennai?
 
 Table: customer
 
@@ -167,7 +166,7 @@ avg_name_length
 
 
 ```sql
--- select avg(length(name)) as avg_name_length from customer
+select avg(length(name)) as avg_name_length from customer
 where city = 'Chennai';
 ```
 
@@ -177,8 +176,8 @@ where city = 'Chennai';
 
 
 **Question 6**
----
---Write a SQL query to find the minimum purchase amount.
+
+Write a SQL query to find the minimum purchase amount.
 
 Sample table: orders
 
@@ -203,7 +202,7 @@ MINIMUM
 
 
 ```sql
--- select min(purch_amt) as MINIMUM FROM orders
+select min(purch_amt) as MINIMUM FROM orders
 order by MINIMUM ASC LIMIT 1;
 ```
 
@@ -213,8 +212,8 @@ order by MINIMUM ASC LIMIT 1;
 
 
 **Question 7**
----
---Write a SQL query to find the shortest email address in the customer table?
+
+Write a SQL query to find the shortest email address in the customer table?
 
 Table: customer
 
@@ -233,7 +232,7 @@ name        email           min_email_length
 Ravi Kumar  ravi@gmail.com  14
 
 ```sql
---select name,email, length(email) as min_email_length
+select name,email, length(email) as min_email_length
 from customer
 order by length(email) asc
 limit 1;
@@ -245,8 +244,8 @@ limit 1;
 
 
 **Question 8**
----
--- Write a SQL query to find the Fruit with the lowest available quantity.
+
+Write a SQL query to find the Fruit with the lowest available quantity.
 
 Note: Inventory attribute contains amount of fruits
 
@@ -270,7 +269,7 @@ Watermelon  15
 
 
 ```sql
--- select name as fruit_name, inventory as lowest_quantity from fruits
+select name as fruit_name, inventory as lowest_quantity from fruits
 order by inventory asc limit 1;
 ```
 
@@ -280,8 +279,8 @@ order by inventory asc limit 1;
 
 
 **Question 9**
----
--- How many prescriptions were written in each frequency category (e.g., once daily, twice daily)?
+
+ How many prescriptions were written in each frequency category (e.g., once daily, twice daily)?
 
 Sample tablePrescriptions Table
 
@@ -301,7 +300,7 @@ Pending        1
 Twice daily    1
 
 ```sql
---select Frequency,count(*) as TotalPrescriptions 
+select Frequency,count(*) as TotalPrescriptions 
 from Prescriptions
 group by Frequency  
 order by Frequency ;
@@ -312,8 +311,8 @@ order by Frequency ;
 
 
 **Question 10**
----
---Write a SQL query that counts the number of unique salespeople. Return number of salespeople.
+
+Write a SQL query that counts the number of unique salespeople. Return number of salespeople.
 
 Sample table: orders
 
@@ -337,7 +336,7 @@ COUNT
 6
 
 ```sql
--- select count(distinct salesman_id) as COUNT
+select count(distinct salesman_id) as COUNT
 from orders;
 ```
 
