@@ -1,5 +1,6 @@
 # Experiment 2: DDL Commands
-
+## NAME: VESHWANTH.
+## REG NO: 212224230300
 ## AIM
 To study and implement DDL commands and different types of constraints.
 
