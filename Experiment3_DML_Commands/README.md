@@ -1,5 +1,6 @@
 # Experiment 3: DML Commands
-
+## NAME: VESHWANTH.
+## REG NO: 212224230300
 ## AIM
 To study and implement DML (Data Manipulation Language) commands.
 
