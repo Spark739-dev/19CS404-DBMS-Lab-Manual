@@ -1,6 +1,6 @@
 # Experiment 9: PL/SQL – Procedures and Functions
 ## NAME: VESHWANTH.
-## REG NO: 212224230300
+## REGNO: 212224230300
 ## AIM
 To understand and implement procedures and functions in PL/SQL for performing various operations such as calculations, decision-making, and looping.
 
